@@ -1,13 +1,15 @@
 <?php session_start(); ?>
 <?php include 'db.php'; ?>
-<?php print_r($_SESSION['selected_choices'][0]) ; ?>
-<?php print_r($_SESSION['selected_choices'][1]) ; ?>
-<?php print_r($_SESSION['selected_choices'][2]) ; ?>
+<?php ///print_r($_SESSION['selected_choices'][0]) ; ?>
+<?php ///print_r($_SESSION['selected_choices'][1]) ; ?>
+<?php ///print_r($_SESSION['selected_choices'][2]) ; ?>
 
 <?php
 
+//code for getting user's choices from the input and the database 
+/*------------*/
 
-if($_SESSION['site_number']==1){
+if($_SESSION['site_number']==1){ //case if quiz1 was chosen, because there are 3 questions only, so we only need to save 3 choices
 
 		$first_answer = $_SESSION['selected_choices'][0];
 		$second_answer = $_SESSION['selected_choices'][1];
@@ -31,11 +33,11 @@ if($_SESSION['site_number']==1){
 		{
 		    $third_text = $row['text'];  
 		}
-		echo $first_text;
-		echo $second_text;
-		echo $third_text;
+		// echo $first_text;
+		// echo $second_text;
+		// echo $third_text;
 }
-else{
+else{//case if quiz2 was chosen, because there are 5 questions, so we need to save 5 choices of a user
 
 		$first_answer = $_SESSION['selected_choices'][0];
 		$second_answer = $_SESSION['selected_choices'][1];
@@ -75,47 +77,48 @@ else{
 		    $fifth_text = $row['text'];  
 		}
 
-		echo $first_text;
-		echo $second_text;
-		echo $third_text;
-		echo $fourth_text;
-		echo $fifth_text;
+		// echo $first_text;
+		// echo $second_text;
+		// echo $third_text;
+		// echo $fourth_text;
+		// echo $fifth_text;
 }
 
 ?>
 
-<?php
-					$score_ = $_SESSION['score'];
-					$con = mysqli_connect('localhost', 'root', '');
-					if(!$con){
-						//echo 'Not Connected to The Server';
-					}
-					if(!mysqli_select_db($con, 'quiz_vendon')){
-						//echo 'Database Not Selected';
-					}
-					$name = $_SESSION['username'];
-					$site_number=$_SESSION['site_number'];
+<?php 	//code for adding user's choices to the database ------------------
+		/*-------------------------*/
+		$score_ = $_SESSION['score'];
+		$con = mysqli_connect('localhost', 'root', '');
+		if(!$con){
+			//echo 'Not Connected to The Server';
+		}
+		if(!mysqli_select_db($con, 'quiz_vendon')){
+			//echo 'Database Not Selected';
+		}
+		$name = $_SESSION['username'];
+		$site_number=$_SESSION['site_number'];
 
-					if($site_number==1){
-								$sql = "INSERT INTO user_results (name, score, quiz_chosen, Question1, Question2, Question3) VALUES ('$name', '$score_', '$site_number', '$first_text','$second_text','$third_text')";
-					}
-					else{
-						$sql = "INSERT INTO user_results (name, score, quiz_chosen, Question1, Question2, Question3, Question4, Question5) VALUES ('$name', '$score_', '$site_number', '$first_text','$second_text','$third_text', '$fourth_text','$fifth_text')";
-					}
+		if($site_number==1){
+					$sql = "INSERT INTO user_results (name, score, quiz_chosen, Question1, Question2, Question3) VALUES ('$name', '$score_', '$site_number', '$first_text','$second_text','$third_text')";
+		}
+		else{
+			$sql = "INSERT INTO user_results (name, score, quiz_chosen, Question1, Question2, Question3, Question4, Question5) VALUES ('$name', '$score_', '$site_number', '$first_text','$second_text','$third_text', '$fourth_text','$fifth_text')";
+		}
 
 
-					if(!mysqli_query($con, $sql)){
-						//echo "Name not added to the database";
-					}
-					else{
-						//echo "Name added to the database";
-					}
-					// header("refresh:0.001; url=$quiz_site");
+		if(!mysqli_query($con, $sql)){
+			//echo "Name not added to the database";
+		}
+		else{
+			//echo "Name added to the database";
+		}
+		// header("refresh:0.001; url=$quiz_site");
 ?>
 <?php
 //Create connection credentials
 
-//Create mysqli object abd read username for SQL database
+//Read LAST input username from SQL database
 $con = mysqli_connect('localhost', 'root', '', 'quiz_vendon');
 $sql = mysqli_query($con, "SELECT * FROM user_results ORDER BY user_id DESC LIMIT 1");
 $username = mysqli_fetch_row($sql);
@@ -149,7 +152,7 @@ $username = mysqli_fetch_row($sql);
 
 	<footer>
 		<div class="container">
-			Copyright
+			Andris Erglis 2019
 		</div>
 	</footer>
 </body>

@@ -1,13 +1,19 @@
-<?php session_start();?>
-<?php include 'db.php'; ?>
+<?php session_start(); //start the session ?>
+<?php include 'db.php'; //include database file ?>
 
 <?php
-//Get total number of questions per quiz
+//Get total number of questions per quiz 1
 $query = "SELECT * FROM questions";
 $results = $mysqli->query($query) or die ($mysqli->error.__LINE__);
-$total = $results->num_rows
+$total = $results->num_rows;
 ?>
 
+<?php
+//Get total number of questions per quiz 2
+$query = "SELECT * FROM questions_math";
+$results = $mysqli->query($query) or die ($mysqli->error.__LINE__);
+$total2 = $results->num_rows;
+?>
 
 
 <!DOCTYPE html>
@@ -27,62 +33,96 @@ $total = $results->num_rows
 	</header>
 	<main>
 		<div class="container">
-			<h2>Test your knowledge</h2>
-			<p>This is a multiple choice quizz.</p>
-
-
-			<form action="" method="POST">
+			<form action="" method="POST" required>
 				Choose one of the following quizzes:
-						<select name="quiz_list" onchange="this.form.submit();" required>
-							<option value="-1">Select</option>
+				<br>
+						<select id="quiz_list" name="quiz_list" onchange="this.form.submit();" required="true">
+							<option value="false">Select</option>
 							<option value="Quiz1">Quiz 1</option>
 							<option value="Quiz2">Quiz 2</option>
 						</select>
 						<!-- <input type="submit" /> -->
 			</form>
-			<ul>
-				<li><strong>Number of questions:</strong><?php echo $total; ?></li>
-				<li><strong>Type:</strong>Multiple Choice</li>
-			</ul>
 
-			<?php 
+
+			<?php //obtain which quiz is going to be chosen
 			if(!isset($_POST['quiz_list'])){
-				$cards="Select the Quiz from above";
+				$cards="Select the Quiz from above"; //variable for saving quiz chosen
 			}
 			else{
 				$cards = $_POST['quiz_list'];
 			}
-			 ?>
+			?>
 			<?php echo $cards; ?>
 
 
 			<!-- <a href="quizz.php?n=1" class="start"> Start the Quiz </a> -->
-			<?php if($cards == "Quiz1"){
-				$quiz_site= "quizz.php?n=1";
-			}
-				else{
+			<?php 
+				if($cards == "Quiz1"){ //based on chosen quiz choose where user is going to be redirected
+					$quiz_site= "quizz.php?n=1";
+				}
+				elseif($cards == "Quiz2"){
 					$quiz_site= "quizz_math.php?n=1";
 				}
+				else{
+					echo "";
+				}
 			?>
-			<?php $_SESSION['quiz_site'] = $quiz_site; ?>
-			<div class="namebar">
-				<form action="insert.php"  method="post"> <!-- <?php// echo $quiz_site ?> -->
-					Enter your name: <input type="text" name="username" id="username" required>	
-					<input type="submit" class="start" name="submit" value="Start the Quiz"> 
+			<ul>
+				<li><strong>Number of questions:</strong>
+					<?php
+						if($cards == "Quiz1"){
+							echo $total;
+						}
+						elseif($cards == "Quiz2"){
+							echo $total2;
+						}
+						else{
+							echo "Choose the quiz first to obtain number of questions";
+						}
+					?>
+				</li>	
+			</ul>
+			<?php if(!isset($_POST['quiz_list'])){
+				echo "Please select the quiz";
+			}
+				else{
+			 $_SESSION['quiz_site'] = $quiz_site;
+			 } //save chosen quiz site variable in a session variable ?>
 
-<!-- 					<a href='<?php //echo $quiz_site ?>' onclick='this.parentNode.submit(); return false;' class="start">Start the Quiz</a> -->
-
-				</form>
-			</div>
 
 
-			
+
+			<?php if(!isset($_POST['quiz_list'])): //cannot go further if quiz is not selected, page reloads ?> 
+				<div class="namebar">
+					<form action="index.php"  method="post"> <!-- <?php// echo $quiz_site ?> -->
+						Enter your name: 
+						<br>
+						<input type="text" name="username" id="username" required>	
+						<br>
+						<input type="submit" class="start" name="submit" value="Start the Quiz"> 
+					</form>
+				</div>
+				<?php echo "Please select the quiz!"; ?>
+			<?php endif; ?>
+
+			<?php if(isset($_POST['quiz_list'])): ?>
+				<div class="namebar">
+					<form action="insert.php"  method="post"> <!-- <?php// echo $quiz_site ?> -->
+						Enter your name: 
+						<br>
+						<input type="text" name="username" id="username" required>	
+						<br>
+						<input type="submit" class="start" name="submit" value="Start the Quiz"> 
+					</form>
+				</div>
+			<?php endif; ?> 
+
 		</div>
 	</main>
-
 	<footer>
 		<div class="container">
-			Copyright
+			Andris Erglis 2019
 		</div>
 	</footer>
 </body>

@@ -2,6 +2,7 @@ body{
 	font-family: arial;
 	font-size: 15px;
 	line-height: 1.6em;
+
 }
 
 li{
@@ -16,10 +17,11 @@ a{
 	width:60%;
 	margin: 0 auto;
 	overflow: auto;
+
 }
 
 header{
-	border-bottom:3px #f4f4f4 solid;
+	text-align: center;
 }
 
 footer{
@@ -30,6 +32,7 @@ footer{
 
 main{
 	padding-bottom: 20px;
+	text-align: center;
 }
 
 a.start{
@@ -54,15 +57,15 @@ a.start{
 	background:linear-gradient(to bottom, #29596b 5%, #0adeff 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#29596b', endColorstr='#0adeff',GradientType=0);
 	background-color:#29596b;
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
+	-moz-border-radius:80px;
+	-webkit-border-radius:80px;
 	border-radius:8px;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:20px;
-	font-weight:bold;
+	font-size:15px;
+	/*font-weight:bold;*/
 	padding:13px 32px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #000000;
@@ -76,6 +79,7 @@ a.start{
 	background:linear-gradient(to bottom, #0adeff 5%, #29596b 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0adeff', endColorstr='#29596b',GradientType=0);
 	background-color:#0adeff;
+	border-radius:50px;
 }
 .start:active {
 	position:relative;
@@ -94,11 +98,47 @@ a.start{
 
 .namebar{
 
-	margin: 20px 0 15px 0;
+	/*margin: 10px 0 6px 0;*/
 	background: #f4f4f5;
-	border: 1px dotted #f4f4f4;
-	padding:100px;
+	border: 1px dotted #f4f4f5;
+	padding:10px;
+	width:400px;
+	margin: 0 auto;
 }
+#username {
+
+  border: 1px solid #b7b7b7;
+  -webkit-border-radius: 33px;
+  border-radius: 10px;
+  background-color: #f4f4f5;
+  width:300px;
+
+
+}
+
+#username:hover {
+  border-radius: 60px;
+  background-color: #D6D7D7;
+
+
+}
+
+#quiz_list {
+  font-size: 13px;
+  padding: 10px 8px 10px 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  position: relative;
+  background-color: #D6D7D7;
+}
+
+#quiz_list:hover {
+
+  background-color: #b7b7b7;
+}
+
+
 
 label{
 	display: inline-block;
@@ -172,13 +212,19 @@ input[type='number']{
 #progressBar {
 	width: 20rem;
 	height: 2rem;
-	border: 0.3rem solid #56a5eb;
+	border: 0.3rem solid #018AE6;
+	margin: 0 auto;
+	border-radius: 50px;
+
 }
 
 #progressBarfull {
-	height: 1.9rem;
-	background-color:  #56a5eb;
+	height: 2rem;
+	background-color:  #018AE6;
 	width:0%;
+	border-radius: 50px;
+
+
 }
 
 input:required {
@@ -230,6 +276,7 @@ input:required {
 
 .radiobtn
 {
+	 display: inline-grid;
      -webkit-appearance: none;
      -moz-appearance: none;
      appearance: none;
@@ -263,3 +310,11 @@ input:required {
 {
      background-color: #f1f1f1;
 }
+
+.radiocontainer {
+  /*display: grid;*/
+  /* tells the auto-placement algorithm to attempt to fill in holes earlier in the grid if smaller items come up later */
+/*grid-template-columns: 1fr 1fr;*/
+}
+
+

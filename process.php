@@ -1,9 +1,11 @@
 <?php session_start(); ?>
 <?php include 'db.php'; ?>
-
+<!-- this file is responsible for counting points and setting correct answers in the quiz. it is the page in 
+between quizz questions, after each question is answered, it is submitted here and score is being counted. 
+after last question this page redirects to the final page -->
 <?php
 
-	//Check the score
+	//Check the score and set it to 0 at the beginning
 	if(!isset($_SESSION['score'])){
 		$_SESSION['score'] = 0;
 	}
@@ -13,34 +15,26 @@
 		$_SESSION['selected_choices'][]=$selected_choice;
 		$next = $number + 1;
 
-		//Get total questions
-
+		//---------Get total questions from quiz1
 		$query = "SELECT * FROM `questions`";
-		//Get result
 		$results = $mysqli-> query($query) or die ($mysqli->error.__LINE__);
 		$total = $results->num_rows;
 
 
-		//Get correct choice
-
+		//--------Get correct choice from database quiz1
 		$query = "SELECT * FROM `choices` WHERE question_number = $number AND is_true =1";
-
-		//Get result
 		$result = $mysqli-> query($query) or die ($mysqli->error.__LINE__);
-
 		//Get row
 		$row = $result->fetch_assoc();
-
-		//Set correct choice
-
+		//Set correct choice from database
 		$correct_choice = $row['id'];
 
-		//Compare
+		//Compare if choice is correct, then add +1 score if correct
 		if($correct_choice == $selected_choice){
 			//Answer is correct
 			$_SESSION['score']++;
 		}
-		//Check if the question is last or not
+		//Check if the question is last or not and redirect on the next page
 		if($number == $total){
 			header("Location: final.php");
 			exit();

@@ -6,27 +6,21 @@
 	//set question number
 	$number = (int)$_GET['n'];
 
-	/*
-	* Get question
-	*/
+	/*--------Get question-----*/
 	$query = "SELECT * FROM `questions_math` WHERE question_number = $number";
-	//Get result
+	//Get question
 	$result = $mysqli->query($query) or die ($mysqli->error.__LINE__);
 	$question = $result->fetch_assoc();
 
-	/*
-	*/
+	/*------*/
 	$query = "SELECT * FROM `questions_math`";
-	//Get result
+	//Get total nr of questions
 	$results = $mysqli-> query($query) or die ($mysqli->error.__LINE__);
 	$total = $results->num_rows;
 	$_SESSION['total'] = $total;
 
-	/*
-	* Get choices
-	*/
+	/*---- Get choices----*/
 	$query = "SELECT * FROM `choices_math` WHERE question_number = $number";
-	//Get results
 	$choices = $mysqli->query($query) or die ($mysqli->error.__LINE__);
 
 ?>
@@ -53,12 +47,11 @@
 				Question <?php echo $question['question_number']; ?> of <?php echo $total; ?> 
 			</div>
 
-
 			<div id="progressBar"> 
-			<div id="progressBarfull"></div>
+				<div id="progressBarfull"></div>
 			</div>
 
-			<script>
+			<script> //progress bar dynamic refresh per quiz question
 				var elem = document.getElementById("progressBarfull");
 				var question_nr = <?php echo $question['question_number'] ?>;
 				var total_question = <?php echo $total ?>;
@@ -66,13 +59,14 @@
 			</script>
 
 			<p class="question">
-				<?php echo $question['text']; ?>
+				<?php echo $question['text']; //read the question from database ?>
 			</p>
-			<form method="post" action="process_math.php">
-					
+			<form method="post" action="process_math.php">	
 				<ul class="choices">
 					<?php while ($row = $choices->fetch_assoc()): ?>
-						<li><input class="radiobtn" name="choice" type="radio" value="<?php echo $row['id']; ?>" required/> <?php echo $row['text']; ?></li>
+						<!-- <li> -->
+							<input class="radiobtn" name="choice" type="radio" value="<?php echo $row['id']; ?>" required/> <?php echo $row['text'];//choices of the questions read from the database ?>
+						<!-- </li> -->
 					<?php endwhile; ?>	
 				</ul>
 				<input id="submit" type="submit" name="Submit" />
@@ -82,7 +76,7 @@
 	</main>
 	<footer>
 		<div class="container">
-			Copyright
+			Andris Erglis 2019
 		</div>
 	</footer>
 </body></html>
