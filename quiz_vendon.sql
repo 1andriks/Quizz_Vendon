@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2019 at 09:23 PM
+-- Generation Time: Jul 05, 2019 at 09:54 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -147,6 +147,30 @@ CREATE TABLE `user_results` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `user_results`
+--
+
+INSERT INTO `user_results` (`user_id`, `Name`, `quiz_chosen`, `score`, `Question1`, `Question2`, `Question3`, `Question4`, `Question5`) VALUES
+(177, 'ndrixxxx', 2, 2, '4', '25', '1', '100', '54'),
+(178, 'sff', 2, 1, '2', '10', '100', '99', '54'),
+(179, 'ss', 1, 1, 'Riga', 'Siberia', 'Andromeda', '', ''),
+(180, 'dd', 1, 1, 'Riga', 'USA', 'Siberia', '', ''),
+(181, 'dd', 1, 0, 'USA', 'St. Petersburg', 'Andromeda', '', ''),
+(182, ' vdv', 1, 2, 'Riga', 'Trumps house', 'Tallinn', '', ''),
+(183, 'gg', 1, 1, 'Riga', 'Trumps house', 'Andromeda', '', ''),
+(184, 'gne', 1, 1, 'Riga', 'Siberia', 'Andromeda', '', ''),
+(185, 'ss', 2, 2, '4', '10', '1000', '1', '54'),
+(186, 'f', 2, 2, '4', '10', '1000', '99', '54'),
+(187, 'f', 1, 0, 'USA', 'Siberia', 'Andromeda', '', ''),
+(188, 'ss', 2, 0, '2', '25', '10', '1', '54'),
+(189, 'ff', 2, 1, '2', '10', '10', '99', '54'),
+(190, 'fggf', 1, 0, 'USA', 'Siberia', 'Andromeda', '', ''),
+(191, '1andriks', 1, 1, 'Riga', 'Trumps house', 'Andromeda', '', ''),
+(192, 'Andris', 2, 4, '2', '10', '0', '100', '1'),
+(193, 'ffg', 1, 1, 'USA', 'St. Petersburg', 'Tallinn', '', ''),
+(194, 'dg', 2, 5, '4', '10', '0', '100', '1');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -200,7 +224,7 @@ ALTER TABLE `choices_math`
 -- AUTO_INCREMENT for table `user_results`
 --
 ALTER TABLE `user_results`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
