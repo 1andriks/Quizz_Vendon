@@ -20,3 +20,11 @@ $db_host = 'localhost';
 $db_user = 'root';
 $db_password = ''; (none)
 $db_name = 'quiz_vendon';
+
+quiz_vendon.sql description:
+
+questions - table of questions for Quiz 1;
+questions_math - table of questions for Quiz 2;
+choices - table of choicess for Quiz 1;
+choices_math - table of choices for Quiz 2;
+users_results - results of a user: name, quiz chosen, score, chosen answers;
