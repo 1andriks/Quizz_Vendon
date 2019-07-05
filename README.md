@@ -29,3 +29,7 @@ questions_math - table of questions for Quiz 2;
 choices - table of choicess for Quiz 1;
 choices_math - table of choices for Quiz 2;
 users_results - results of a user: name, quiz chosen, score, chosen answers;
+
+
+Info for used database server:
+XAMPP software was used to connect to MySQL and Apache server. Database was created with phpMyAdmin.
