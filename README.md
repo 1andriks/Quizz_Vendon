@@ -21,6 +21,7 @@ $db_user = 'root';
 $db_password = ''; (none)
 $db_name = 'quiz_vendon';
 
+
 quiz_vendon.sql description:
 
 questions - table of questions for Quiz 1;
